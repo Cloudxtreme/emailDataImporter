@@ -53,8 +53,6 @@ public class ImporterMain {
             System.out.println("Zookeeper quorum configuration===========" +  conf.get("hbase.zookeeper.quorum"));
             System.out.println("Zookeeper master configuration===========" +  conf.get("hbase.master"));
 
-           // conf.set("hbase.master", "plumemshdfs-1.qa.messageone.com:60010");
-           // conf.set("fs.defaultFS","hdfs://plumhdfs");
         }
 
         private HBaseHelper() {

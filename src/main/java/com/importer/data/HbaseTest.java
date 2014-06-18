@@ -21,24 +21,27 @@ public class HbaseTest {
     public static void main(String[] args) throws IOException {
 
         Configuration config = HBaseConfiguration.create();
+
         HTable table = new HTable(config, "testHBaseTable");
+
         Put p = new Put(Bytes.toBytes("testRow1"));
-        p.add(Bytes.toBytes("testFamily"), Bytes.toBytes("someQualifier1"),
+
+       /* p.add(Bytes.toBytes("testFamily"), Bytes.toBytes("someQualifier1"),
                 Bytes.toBytes("Some Value"));
         table.put(p);
-
+*/
         Get g = new Get(Bytes.toBytes("testRow1"));
         Result r = table.get(g);
-        byte[] value = r.getValue(Bytes.toBytes("testFamily1"), Bytes
-                .toBytes("someQualifier1"));
+        byte[] value = r.getValue(Bytes.toBytes("testFamily1"), Bytes.toBytes("someQualifier1"));
 
         String valueStr = Bytes.toString(value);
         System.out.println("GET: " + valueStr);
 
         Scan s = new Scan();
-        s.addColumn(Bytes.toBytes("testFamily"), Bytes
-                .toBytes("someQualifier"));
+        s.addColumn(Bytes.toBytes("testFamily"), Bytes.toBytes("someQualifier"));
+
         ResultScanner scanner = table.getScanner(s);
+
         try {
             for (Result rr = scanner.next(); rr != null; rr = scanner.next()) {
                 System.out.println("Found row: " + rr);
